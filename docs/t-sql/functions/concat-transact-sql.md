@@ -101,7 +101,23 @@ NameLastname
   
 (1 row(s) affected)  
 ```  
-  
+
+### C. CONCAT will round float and real data
+
+``` SQL
+SELECT
+       CAST(1.234567890 AS FLOAT) AS               [cast_float]
+     , concat(N'' , 1.234567890) AS                [concat_nocast]
+     , concat(N'' , CAST(1.234567890 AS FLOAT)) AS [concat_castfloat];
+```
+
+[!INCLUDE[ssResult](../../includes/ssresult-md.md)]
+
+| cast\_float | concat\_nocast | concat\_castfloat |
+|-------------|----------------|-------------------|
+| 1,23456789  | 1\.234567890   | 1\.23457          |
+
+
 ## See also
  [CONCAT_WS &#40;Transact-SQL&#41;](../../t-sql/functions/concat-ws-transact-sql.md)   
  [FORMATMESSAGE &#40;Transact-SQL&#41;](../../t-sql/functions/formatmessage-transact-sql.md)  
